@@ -55,27 +55,6 @@ git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
 
 ## How to run it?
 
-### With Makefile
-
-#### Bootstrap app
-```shell
-make
-```
-
-#### Run all services
-```shell
-make run
-```
-
-#### Run only backend services
-```shell
-make run-backend 
-```
-
-See [Makefile](Makefile) for all commands 
-
-### With Docker steps
-
 1. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
     - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
     - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
@@ -115,15 +94,22 @@ docker-compose up
 
 ## Where is the application running?
 - Saleor Core (API) - http://localhost:8000
-- Saleor React Storefront - http://localhost:3001
+- Saleor React Storefront - http://localhost:3000
+- Saleor App Checkout - http://localhost:3001
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
-- Mailhog (Test email interface) - http://localhost:8025 
+- Mailhog (Test email interface) - http://localhost:8025
+
+# Troubleshooting
+
+- [How to solve issues with lack of available space or build errors after an update](#how-to-solve-issues-with-lack-of-available-space-or-build-errors-after-an-update)
+- [How to run application parts?](#how-to-run-application-parts)
+- [How to update the subprojects to the newest versions?](#how-to-update-the-subprojects-to-the-newest-versions)
 
 ## How to update the subprojects to the newest versions?
 This repository contains the newest stable versions.
 When a new release is published, pull a new version of this repository.
-In order to update all of the subprojects to their newest versions, run:
+In order to update all the subprojects to their newest versions, run:
 ```shell
 git submodule update --remote
 ```
