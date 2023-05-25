@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   api:
-    image: ghcr.io/saleor/saleor:3.13.11
+    image: ghcr.io/saleor/saleor:3.13.16
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -26,7 +26,7 @@ services:
       - ALLOWED_HOSTS=localhost,api
 
   dashboard:
-    image: ghcr.io/saleor/saleor-dashboard:3.12.7
+    image: ghcr.io/saleor/saleor-dashboard:3.13.3
     ports:
       - 9000:80
     restart: unless-stopped
@@ -46,7 +46,7 @@ services:
       - POSTGRES_PASSWORD=saleor
 
   redis:
-    image: library/redis:5.0-alpine
+    image: library/redis:7.0-alpine
     ports:
       - 6379:6379
     restart: unless-stopped
@@ -56,7 +56,7 @@ services:
       - saleor-redis:/data
 
   worker:
-    image: ghcr.io/saleor/saleor:3.13.11
+    image: ghcr.io/saleor/saleor:3.13.16
     command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info -B
     restart: unless-stopped
     networks:
